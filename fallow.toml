@@ -14,6 +14,7 @@ ignorePatterns = [
 ignoreDependencies = [
 	"@fontsource/inter",
 	"@fontsource/manrope",
+	"@oxlint/plugins",
 	"@sveltejs/kit",
 	"@tailwindcss/forms",
 	"@tailwindcss/typography",
