@@ -3,6 +3,7 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import type { PageData } from './$types';
 	import SeoHead from '$lib/components/SeoHead.svelte';
+	import ContactInfoRow from '$lib/components/ContactInfoRow.svelte';
 
 	let { data } = $props<{ data: PageData }>();
 
@@ -69,10 +70,8 @@
 				<h2 class="mb-6 font-headline text-2xl font-bold text-on-surface">Contact information</h2>
 
 				<div class="space-y-6">
-					<div class="flex items-center gap-4">
-						<div
-							class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary-container/20 text-primary"
-						>
+					<ContactInfoRow label="Name">
+						{#snippet icon()}
 							<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path
 									stroke-linecap="round"
@@ -81,17 +80,12 @@
 									d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
 								/>
 							</svg>
-						</div>
-						<div>
-							<h3 class="font-medium text-on-surface">Name</h3>
-							<p class="text-secondary">{contactData.name}</p>
-						</div>
-					</div>
+						{/snippet}
+						<p class="text-secondary">{contactData.name}</p>
+					</ContactInfoRow>
 
-					<div class="flex items-center gap-4">
-						<div
-							class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary-container/20 text-primary"
-						>
+					<ContactInfoRow label="Email">
+						{#snippet icon()}
 							<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path
 									stroke-linecap="round"
@@ -100,19 +94,14 @@
 									d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
 								/>
 							</svg>
-						</div>
-						<div>
-							<h3 class="font-medium text-on-surface">Email</h3>
-							<a href={`mailto:${contactData.email}`} class="text-primary hover:underline"
-								>{contactData.email}</a
-							>
-						</div>
-					</div>
-
-					<div class="flex items-center gap-4">
-						<div
-							class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary-container/20 text-primary"
+						{/snippet}
+						<a href={`mailto:${contactData.email}`} class="text-primary hover:underline"
+							>{contactData.email}</a
 						>
+					</ContactInfoRow>
+
+					<ContactInfoRow label="Location">
+						{#snippet icon()}
 							<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path
 									stroke-linecap="round"
@@ -127,17 +116,12 @@
 									d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
 								/>
 							</svg>
-						</div>
-						<div>
-							<h3 class="font-medium text-on-surface">Location</h3>
-							<p class="text-secondary">{contactData.location}</p>
-						</div>
-					</div>
+						{/snippet}
+						<p class="text-secondary">{contactData.location}</p>
+					</ContactInfoRow>
 
-					<div class="flex items-center gap-4">
-						<div
-							class="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary-container/20 text-primary"
-						>
+					<ContactInfoRow label="Phone">
+						{#snippet icon()}
 							<svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path
 									stroke-linecap="round"
@@ -146,14 +130,11 @@
 									d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
 								/>
 							</svg>
-						</div>
-						<div>
-							<h3 class="font-medium text-on-surface">Phone</h3>
-							<a href={`tel:${contactData.phone}`} class="text-primary hover:underline"
-								>{contactData.phone}</a
-							>
-						</div>
-					</div>
+						{/snippet}
+						<a href={`tel:${contactData.phone}`} class="text-primary hover:underline"
+							>{contactData.phone}</a
+						>
+					</ContactInfoRow>
 				</div>
 			</div>
 

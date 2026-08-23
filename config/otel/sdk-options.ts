@@ -4,7 +4,7 @@ import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { resourceFromAttributes } from '@opentelemetry/resources';
 import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics';
 
-export interface OtlpHeaders {
+interface OtlpHeaders {
 	[name: string]: string;
 }
 
@@ -16,7 +16,7 @@ export interface ProfilePageSdkOptions {
 	metricReaders?: PeriodicExportingMetricReader[];
 }
 
-export function parseOtlpHeaders(headerEnv: string | undefined): OtlpHeaders {
+function parseOtlpHeaders(headerEnv: string | undefined): OtlpHeaders {
 	if (!headerEnv) {
 		return {};
 	}

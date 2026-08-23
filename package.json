@@ -30,7 +30,8 @@
 		"assets:project-images": "node scripts/optimize-project-images.mjs",
 		"test:e2e": "playwright test",
 		"semgrep:scan": "semgrep scan --config p/ci --config p/typescript --config p/nodejs --config config/semgrep/rules --metrics off",
-		"otel:verify": "node scripts/test-otlp.mjs"
+		"otel:verify": "node scripts/test-otlp.mjs",
+		"fallow": "fallow"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.12.1",
@@ -79,13 +80,15 @@
 		"@opentelemetry/auto-instrumentations-node": "^0.79.0",
 		"@opentelemetry/exporter-metrics-otlp-http": "^0.221.0",
 		"@opentelemetry/exporter-trace-otlp-http": "^0.221.0",
+		"@opentelemetry/resources": "^2.10.0",
+		"@opentelemetry/sdk-metrics": "^2.10.0",
 		"@opentelemetry/sdk-node": "^0.221.0",
 		"@prisma/adapter-pg": "^7.9.1",
 		"@prisma/client": "^7.9.1",
+		"dotenv": "^17.4.2",
 		"pg": "^8.16.0",
 		"sanitize-html": "^2.17.5",
 		"sveltekit-superforms": "^2.30.1",
-		"valibot": "^1.4.2",
 		"zod": "^4.3.6"
 	},
 	"overrides": {

@@ -1,4 +1,4 @@
-export const blogCategoryColors = {
+const blogCategoryColors = {
 	Development: '#00694b',
 	Technology: '#3d5c52',
 	Backend: '#0a8060',

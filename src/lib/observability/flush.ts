@@ -1,6 +1,5 @@
 import { metrics, trace } from '@opentelemetry/api';
 import type { MeterProvider, TracerProvider } from '@opentelemetry/api';
-import { sdk } from '../../../config/otel/otel-config';
 
 interface FlushableProvider {
 	forceFlush: () => Promise<void>;
@@ -29,9 +28,4 @@ export async function flushOtel(): Promise<void> {
 	if (meterProvider) {
 		await meterProvider.forceFlush();
 	}
-}
-
-export async function shutdownOtel(): Promise<void> {
-	await flushOtel();
-	await sdk?.shutdown();
 }

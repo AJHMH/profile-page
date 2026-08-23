@@ -1,6 +1,6 @@
 import { sanitizeUrl } from '$lib/url';
 
-export const projectCategoryColors = {
+const projectCategoryColors = {
 	frontend: '#00694b',
 	backend: '#3d5c52',
 	fullstack: '#0a8060'

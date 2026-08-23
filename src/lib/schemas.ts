@@ -34,5 +34,3 @@ export const contactFormSchema = z.object({
 	/** Honeypot — must stay empty */
 	website: z.string().max(0, 'Invalid submission').default('')
 });
-
-export type ContactFormSchema = typeof contactFormSchema;

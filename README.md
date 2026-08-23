@@ -145,8 +145,7 @@ src/
 │   │   │   └── index.ts           # Prisma client singleton
 │   │   ├── error-handler.ts       # Centralized error handling
 │   │   ├── email.ts               # Email utilities
-│   │   ├── sanitize.ts            # Input sanitization functions
-│   │   └── sanitize-utils.ts      # Detailed sanitization utilities
+│   │   └── sanitize-utils.ts      # Input sanitization utilities
 │   ├── schemas.ts                 # Zod validation schemas
 │   └── types.ts                   # TypeScript interfaces
 ├── hooks.server.ts                 # SvelteKit server hooks (security headers)

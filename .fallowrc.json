@@ -1,0 +1,8 @@
+{
+	"$schema": "./node_modules/fallow/schema.json",
+	"ignorePatterns": ["tools/oxlint/anti-slop/**", ".agents/**"],
+	"ignoreDependencies": ["@oxlint/plugins"],
+	"rules": {
+		"dev-dependencies-in-production": "off"
+	}
+}

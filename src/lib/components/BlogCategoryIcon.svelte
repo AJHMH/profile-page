@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getBlogCategoryColor, getBlogCategoryIconKey } from '$lib/blog-utils';
+	import CategoryDatabaseIcon from '$lib/components/CategoryDatabaseIcon.svelte';
 
 	let { category, size = 80 }: { category: string; size?: number } = $props();
 
@@ -31,14 +32,7 @@
 		<circle cx="30" cy="50" r="3" fill={color} />
 		<circle cx="50" cy="50" r="3" fill={color} />
 	{:else if icon === 'database'}
-		<ellipse cx="40" cy="20" rx="16" ry="8" stroke={color} stroke-width="3" fill="none" />
-		<path
-			d="M 24 20 L 24 60 Q 24 68 40 68 Q 56 68 56 60 L 56 20"
-			stroke={color}
-			stroke-width="3"
-			fill="none"
-		/>
-		<ellipse cx="40" cy="60" rx="16" ry="8" stroke={color} stroke-width="2" fill="none" />
+		<CategoryDatabaseIcon {color} />
 	{:else if icon === 'palette'}
 		<circle cx="40" cy="40" r="20" stroke={color} stroke-width="3" fill="none" />
 		<circle cx="28" cy="28" r="3" fill={color} />

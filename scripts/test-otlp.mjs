@@ -132,32 +132,27 @@ const metricPayload = {
 	]
 };
 
-let failed = false;
-
-if (tracesUrl) {
-	console.log(`Traces: ${tracesUrl}`);
+async function verifyEndpoint(label, url, auth, payload) {
+	console.log(`${label}: ${url}`);
 	try {
-		const result = await postOtlp(tracesUrl, tracesAuth, tracePayload);
+		const result = await postOtlp(url, auth, payload);
 		console.log(`  -> ${result.status} ${result.statusText}`);
 		if (result.body && result.body.length < 200) console.log(`  -> ${result.body}`);
-		if (result.status < 200 || result.status >= 300) failed = true;
+		return result.status < 200 || result.status >= 300;
 	} catch (error) {
 		console.log(`  -> ERROR ${error.message}`);
-		failed = true;
+		return true;
 	}
 }
 
+let failed = false;
+
+if (tracesUrl) {
+	failed = (await verifyEndpoint('Traces', tracesUrl, tracesAuth, tracePayload)) || failed;
+}
+
 if (metricsUrl) {
-	console.log(`Metrics: ${metricsUrl}`);
-	try {
-		const result = await postOtlp(metricsUrl, metricsAuth, metricPayload);
-		console.log(`  -> ${result.status} ${result.statusText}`);
-		if (result.body && result.body.length < 200) console.log(`  -> ${result.body}`);
-		if (result.status < 200 || result.status >= 300) failed = true;
-	} catch (error) {
-		console.log(`  -> ERROR ${error.message}`);
-		failed = true;
-	}
+	failed = (await verifyEndpoint('Metrics', metricsUrl, metricsAuth, metricPayload)) || failed;
 }
 
 process.exit(failed ? 1 : 0);

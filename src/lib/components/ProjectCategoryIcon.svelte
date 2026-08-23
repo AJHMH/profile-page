@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getProjectCategoryColor, getProjectCategoryIconKey } from '$lib/project-utils';
+	import CategoryDatabaseIcon from '$lib/components/CategoryDatabaseIcon.svelte';
 
 	let { category, size = 80 }: { category: string; size?: number } = $props();
 
@@ -13,14 +14,7 @@
 		<line x1="12" y1="28" x2="68" y2="28" stroke={color} stroke-width="2" />
 		<line x1="40" y1="12" x2="40" y2="68" stroke={color} stroke-width="2" stroke-dasharray="4,4" />
 	{:else if icon === 'database'}
-		<ellipse cx="40" cy="20" rx="16" ry="8" stroke={color} stroke-width="3" fill="none" />
-		<path
-			d="M 24 20 L 24 60 Q 24 68 40 68 Q 56 68 56 60 L 56 20"
-			stroke={color}
-			stroke-width="3"
-			fill="none"
-		/>
-		<ellipse cx="40" cy="60" rx="16" ry="8" stroke={color} stroke-width="2" fill="none" />
+		<CategoryDatabaseIcon {color} />
 	{:else if icon === 'layers'}
 		<rect x="10" y="12" width="60" height="16" rx="2" stroke={color} stroke-width="3" fill="none" />
 		<rect x="14" y="32" width="60" height="16" rx="2" stroke={color} stroke-width="3" fill="none" />
