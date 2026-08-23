@@ -16,7 +16,7 @@ export interface ProfilePageSdkOptions {
 	metricReaders?: PeriodicExportingMetricReader[];
 }
 
-export function parseOtlpHeaders(headerEnv: string | undefined): OtlpHeaders {
+function parseOtlpHeaders(headerEnv: string | undefined): OtlpHeaders {
 	if (!headerEnv) {
 		return {};
 	}

@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { Prisma } from '@prisma/client';
 
-export const siteMetadataSchema = z.object({
+const siteMetadataSchema = z.object({
 	email: z.string().email().optional(),
 	phone: z.string().max(50).optional(),
 	github: z.string().url().optional(),
