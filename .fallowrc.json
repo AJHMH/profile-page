@@ -1,7 +1,16 @@
 {
 	"$schema": "./node_modules/fallow/schema.json",
-	"ignorePatterns": ["tools/oxlint/anti-slop/**", ".agents/**"],
-	"ignoreDependencies": ["@oxlint/plugins"],
+	"ignorePatterns": ["tools/oxlint/**", ".agents/**", "fallow-results.json"],
+	"ignoreDependencies": [
+		"@fontsource/inter",
+		"@fontsource/manrope",
+		"@oxlint/plugins",
+		"@sveltejs/kit",
+		"@tailwindcss/forms",
+		"@tailwindcss/typography",
+		"svelte",
+		"tailwindcss"
+	],
 	"rules": {
 		"dev-dependencies-in-production": "off"
 	}
