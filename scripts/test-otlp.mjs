@@ -57,7 +57,8 @@ async function postOtlp(url, auth, body) {
 	const response = await fetch(url, {
 		method: 'POST',
 		headers,
-		body: JSON.stringify(body)
+		body: JSON.stringify(body),
+		signal: AbortSignal.timeout(10_000)
 	});
 	const text = await response.text();
 	return { status: response.status, statusText: response.statusText, body: text };
