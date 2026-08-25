@@ -18,6 +18,8 @@ A modern, responsive personal portfolio website built with **SvelteKit**, **Svel
 - **Error Handling**: Centralized error utilities with user-friendly messages
 - **Security**: CSP and security headers in `hooks.server.ts`, in-memory rate limiting on `POST /contact`, honeypot field on the contact form, input sanitization
 
+Step-by-step first run (Postgres, seed, `DATABASE_URL` gotcha): [docs/tutorial-getting-started.md](docs/tutorial-getting-started.md). Full doc index: [docs/README.md](docs/README.md).
+
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -267,11 +269,24 @@ All quality gates must pass before merging to main.
 
 ## 📖 Documentation
 
-- **CLAUDE.md** - Architecture overview and quick commands for Claude Code
-- **DEPLOYMENT_GUIDE.md** - Step-by-step deployment instructions
-- **DATABASE_CONFIG.md** - Connection pooling and production database setup
-- **docs/PRODUCTION_AUDIT.md** — Production readiness notes
-- **docs/DESIGN_ASSETS.md** — Keep large design zips out of the repo
+Index: **[docs/README.md](docs/README.md)** (Diataxis: tutorial, how-tos, reference, explanation).
+
+| Document                                                             | Quadrant    | Description                                                          |
+| -------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------- |
+| [docs/tutorial-getting-started.md](docs/tutorial-getting-started.md) | Tutorial    | Clone, Postgres, seed, first working page                            |
+| [docs/howto-manage-content.md](docs/howto-manage-content.md)         | How-to      | Bio, blog, and projects via Prisma Studio                            |
+| [docs/howto-configure-contact.md](docs/howto-configure-contact.md)   | How-to      | Console / Resend / SendGrid for `/contact`                           |
+| [docs/reference.md](docs/reference.md)                               | Reference   | Routes, env, Prisma models, contact API, scripts                     |
+| [docs/explanation-architecture.md](docs/explanation-architecture.md) | Explanation | Why Prisma Studio, no login, and the `DATABASE_URL` import-time trap |
+
+Also:
+
+- **CLAUDE.md** / **AGENTS.md** — commands and Cloud/local gotchas
+- **DEPLOYMENT_GUIDE.md** — GitHub + Vercel
+- **DATABASE_CONFIG.md** — connection pooling
+- **SECURITY.md** — vulnerability reporting
+- **docs/CI-CD.md**, **docs/OBSERVABILITY.md**, **docs/DEPENDENCY-MANAGEMENT.md**
+- **docs/PRODUCTION_AUDIT.md**, **docs/DESIGN_ASSETS.md**, **docs/AI-WORKFLOW-PLAYBOOK.md**
 
 ## 🤝 Contributing
 
