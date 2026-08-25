@@ -97,10 +97,15 @@ Claude plans and reviews; Cursor implements in the repo. Do not use GitHub Copil
 
 ## Documentation
 
-- `README.md` — onboarding and scripts
-- `DEPLOYMENT_GUIDE.md`, `DATABASE_CONFIG.md`, `SECURITY.md`
-- `docs/PRODUCTION_AUDIT.md`, `docs/DESIGN_ASSETS.md`, `docs/AI-WORKFLOW-PLAYBOOK.md`, `docs/BLUEPRINT-STATUS.md`, `docs/CI-CD.md`, `docs/DEPENDENCY-MANAGEMENT.md`, `docs/OBSERVABILITY.md`
-- `AI-Engineering-Blueprint.md` — full stack blueprint
+Index: **`docs/README.md`**. Diataxis pages:
+
+- `docs/tutorial-getting-started.md` — clone to running site
+- `docs/howto-manage-content.md` — Prisma Studio (bio / blog / projects)
+- `docs/howto-configure-contact.md` — contact email providers
+- `docs/reference.md` — routes, env, schema, contact surface
+- `docs/explanation-architecture.md` — why no CMS/auth; `DATABASE_URL` import-time
+
+Also: `README.md`, `DEPLOYMENT_GUIDE.md`, `DATABASE_CONFIG.md`, `SECURITY.md`, `docs/PRODUCTION_AUDIT.md`, `docs/DESIGN_ASSETS.md`, `docs/AI-WORKFLOW-PLAYBOOK.md`, `docs/BLUEPRINT-STATUS.md`, `docs/CI-CD.md`, `docs/DEPENDENCY-MANAGEMENT.md`, `docs/OBSERVABILITY.md`, `AI-Engineering-Blueprint.md`.
 
 ## Conventions
 

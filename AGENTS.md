@@ -2,7 +2,7 @@
 
 This is a SvelteKit 2 portfolio site (Svelte 5, Vite 8, TypeScript) backed by Prisma 7 + PostgreSQL. Content (Bio, Project, BlogPost) is edited via Prisma Studio; there is no end-user auth. The contact form is the only user-facing write action and emails via a pluggable provider (`console` in dev).
 
-Standard commands live in `package.json` scripts and `CLAUDE.md` (dev, build, check, lint, test, db:\*). Prefer those.
+Standard commands live in `package.json` scripts and `CLAUDE.md` (dev, build, check, lint, test, db:\*). Prefer those. Human-oriented docs: **[docs/README.md](docs/README.md)** (tutorial, content how-to, contact how-to, reference, architecture).
 
 ## Cursor + Claude workflow
 
