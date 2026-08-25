@@ -177,14 +177,14 @@ In-memory `Map` per Node process. On Vercel each warm isolate has its own map.
 
 CSP (`svelte.config.js`, `kit.csp.mode: 'auto'`):
 
-| Directive     | Sources                   |
-| ------------- | ------------------------- |
-| `default-src` | `self`                    |
-| `script-src`  | `self`                    |
-| `style-src`   | `self`, `unsafe-inline`   |
-| `img-src`     | `self`, `data:`, `https:` |
-| `font-src`    | `self`                    |
-| `connect-src` | `self`                    |
+| Directive     | Sources                     |
+| ------------- | --------------------------- |
+| `default-src` | `'self'`                    |
+| `script-src`  | `'self'`                    |
+| `style-src`   | `'self'`, `'unsafe-inline'` |
+| `img-src`     | `'self'`, `data:`, `https:` |
+| `font-src`    | `'self'`                    |
+| `connect-src` | `'self'`                    |
 
 Fonts are `@fontsource/manrope` and `@fontsource/inter` from `src/app.css`. Adapter: `@sveltejs/adapter-vercel` with `runtime: 'nodejs22.x'`.
 

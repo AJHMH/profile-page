@@ -6,7 +6,7 @@ When you finish, `/about`, `/blog`, and `/projects` show the new rows. For why S
 
 ## Prerequisites
 
-- Node **22.x** (22.22.1 or newer if `npm install` complains about `lint-staged`)
+- **Node.js 22.22.1 or newer** (`.npmrc` sets `engine-strict=true`; older 22.x such as 22.14.x fails `npm install` because of `lint-staged`)
 - PostgreSQL running, schema applied (`npm run db:push`)
 - `.env` with a working `DATABASE_URL` (same database the app uses)
 - Dev server started with `.env` exported into the shell (see the [getting-started tutorial](./tutorial-getting-started.md))
@@ -35,7 +35,7 @@ Studio opens in the browser (Prisma's default port is **5555**). You should see 
    }
    ```
 
-   Invalid JSON is stored, but `parseSkillCategories` treats it as `{}` and the About skills section goes empty.
+   Prisma stores `skillCategories` as JSON, so malformed JSON cannot be saved. Valid JSON with an unexpected shape (not an object of string arrays) is stored, but `parseSkillCategories` treats it as `{}` and the About skills section goes empty.
 
 5. `experience` is a JSON array:
 
@@ -130,15 +130,15 @@ If you see the amber **Content unavailable** banner, the loader caught a Prisma 
 
 ## Troubleshooting
 
-| What you see                                                               | Likely cause                                                                       | Fix                                                                              |
-| -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| About looks empty / default "Aaron Howard" in the nav                      | No Bio `id=1`, or JSON failed parse                                                | Seed bio or fix JSON in Studio                                                   |
-| About in `dev` shows "Local development" and a placeholder about paragraph | DB connection failed; `devFallbackBio` kicked in                                   | Start Postgres, export `.env`, restart `npm run dev`                             |
-| New post missing on `/blog`                                                | Connected to a different database than Studio                                      | Same `DATABASE_URL` for Studio and Vite                                          |
-| Project image broken                                                       | Path points at `/static/projects/…` in the HTML, or file not in `static/projects/` | Store `/projects/file.jpg`; confirm the file exists under `static/projects/`     |
-| Filter chip does nothing for a project                                     | `category` is not `frontend` / `backend` / `fullstack`                             | Rename the field; chips are hardcoded                                            |
-| Blog looks like it ignored my HTML                                         | By design                                                                          | Write plain text, or change the renderer (that is a code change)                 |
-| Seed "ate" my projects                                                     | `db:seed` runs `deleteMany`                                                        | Restore from backup / git history of the seed file; stop using seed on prod data |
+| What you see                                                               | Likely cause                                                                       | Fix                                                                                                                                                                     |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| About looks empty / default "Aaron Howard" in the nav                      | No Bio `id=1`, or JSON failed parse                                                | Seed bio or fix JSON in Studio                                                                                                                                          |
+| About in `dev` shows "Local development" and a placeholder about paragraph | DB connection failed; `devFallbackBio` kicked in                                   | Start Postgres, export `.env`, restart `npm run dev`                                                                                                                    |
+| New post missing on `/blog`                                                | Connected to a different database than Studio                                      | Same `DATABASE_URL` for Studio and Vite                                                                                                                                 |
+| Project image broken                                                       | Path points at `/static/projects/…` in the HTML, or file not in `static/projects/` | Store `/projects/file.jpg`; confirm the file exists under `static/projects/`                                                                                            |
+| Filter chip does nothing for a project                                     | `category` is not `frontend` / `backend` / `fullstack`                             | Rename the field; chips are hardcoded                                                                                                                                   |
+| Blog looks like it ignored my HTML                                         | By design                                                                          | Write plain text, or change the renderer (that is a code change)                                                                                                        |
+| Seed "ate" my projects                                                     | `db:seed` runs `deleteMany`                                                        | Restore from a database backup or export. Git history can recover only projects captured in `scripts/seed-projects.js`; stop using the seed command on production data. |
 
 ## Related
 

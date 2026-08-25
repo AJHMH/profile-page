@@ -6,7 +6,7 @@ SvelteKit is the app framework (file-based routes in `src/routes/`). Prisma is t
 
 ## What you'll need
 
-- **Node.js 22.x**, 22.22.1 or newer (`.npmrc` sets `engine-strict=true`; older 22.14.x fails `npm install` because of `lint-staged`)
+- **Node.js 22.22.1 or newer** (`.npmrc` sets `engine-strict=true`; older 22.x such as 22.14.x fails `npm install` because of `lint-staged`)
 - **npm 10+**
 - **PostgreSQL 12+** listening locally (Cloud snapshot: `sudo pg_ctlcluster 16 main start`)
 - Git

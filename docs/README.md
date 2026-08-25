@@ -34,7 +34,7 @@ New writing follows [Diataxis](https://diataxis.fr/): tutorials teach, how-tos g
 
 ## Diataxis map
 
-```
+```text
                   practical                         theoretical
                  ┌──────────────────────────────────────────────┐
   learning       │ Tutorial: getting started                    │

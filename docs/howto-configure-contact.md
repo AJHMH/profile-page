@@ -7,6 +7,7 @@ Schema, rate limits, and status codes: [application reference](./reference.md). 
 ## Prerequisites
 
 - App runs locally or on Vercel with `DATABASE_URL` (layout still loads Bio for the contact sidebar)
+- PostgreSQL must be running before local `npm run dev`, `npm run db:push`, or seed scripts. Setup: [getting-started tutorial](./tutorial-getting-started.md)
 - For production: a Resend or SendGrid account and a verified `From` domain/address
 - You will **not** use `EMAIL_SERVICE=console` on Vercel (`NODE_ENV=production` rejects it)
 
@@ -89,15 +90,15 @@ The banner clears after five seconds.
 
 ## Troubleshooting
 
-| What you see                                     | Likely cause                                                              | Fix                                                                               |
-| ------------------------------------------------ | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Success banner but no inbox mail                 | `EMAIL_SERVICE=console`, or recipient is the fallback `admin@example.com` | Set `resend`/`sendgrid` and `CONTACT_EMAIL`                                       |
-| "Message delivery failed"                        | API key missing, provider 4xx, 15s timeout, or console-in-production      | Check function logs; `RESEND_API_KEY` / `SENDGRID_API_KEY`; verified `EMAIL_FROM` |
-| "Email service is not configured for production" | `console` under `NODE_ENV=production`                                     | Change `EMAIL_SERVICE`                                                            |
-| "SMTP email service not implemented"             | `EMAIL_SERVICE=smtp`                                                      | Switch to resend or sendgrid                                                      |
-| 429 immediately                                  | Five posts already in the 15-minute window on that isolate                | Wait for `Retry-After`, or restart the dev server (clears the in-memory map)      |
-| Mail HTML shows raw tags from the visitor        | Should not happen; `escapeHtml` runs in `formatContactEmail`              | File a bug; do not strip the escape                                               |
-| Layout contact details wrong                     | Bio `siteMetadata` JSON, not email env                                    | Edit Bio in Studio ([manage content](./howto-manage-content.md))                  |
+| What you see                                       | Likely cause                                                                                             | Fix                                                                               |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Success banner but no inbox mail                   | `EMAIL_SERVICE=console`, or recipient is the fallback `admin@example.com`                                | Set `resend`/`sendgrid` and `CONTACT_EMAIL`                                       |
+| "Message delivery failed"                          | API key missing, provider 4xx, 15s timeout, or console-in-production                                     | Check function logs; `RESEND_API_KEY` / `SENDGRID_API_KEY`; verified `EMAIL_FROM` |
+| "Message delivery failed. Please try again later." | `console` under `NODE_ENV=production`; logs contain `EMAIL_SERVICE=console is not allowed in production` | Change `EMAIL_SERVICE`                                                            |
+| "SMTP email service not implemented"               | `EMAIL_SERVICE=smtp`                                                                                     | Switch to resend or sendgrid                                                      |
+| 429 immediately                                    | Five posts already in the 15-minute window on that isolate                                               | Wait for `Retry-After`, or restart the dev server (clears the in-memory map)      |
+| Mail HTML shows raw tags from the visitor          | Should not happen; `escapeHtml` runs in `formatContactEmail`                                             | File a bug; do not strip the escape                                               |
+| Layout contact details wrong                       | Bio `siteMetadata` JSON, not email env                                                                   | Edit Bio in Studio ([manage content](./howto-manage-content.md))                  |
 
 Rate limiting is **not** shared across Vercel isolates. A spam wave that fans out will mostly miss the cap. That is accepted for this site until a shared store is added.
 
