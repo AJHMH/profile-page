@@ -12,6 +12,10 @@ coverage/
 # Fallow (code health CLI)
 .fallow/
 
+# Local AI / editor tooling
+.claude/
+.cursor/
+
 # OS
 .DS_Store
 Thumbs.db

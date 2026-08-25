@@ -1,0 +1,66 @@
+{
+  "version": "2.0.0",
+  "date": "2026-08-24T19:15:49Z",
+  "mode": "daily",
+  "scope": "full",
+  "diff_mode": false,
+  "phases_run": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+  "attack_surface": {
+    "code": {
+      "public_endpoints": 9,
+      "authenticated": 0,
+      "admin": 0,
+      "api": 0,
+      "uploads": 0,
+      "integrations": 3,
+      "background_jobs": 0,
+      "websockets": 0
+    },
+    "infrastructure": {
+      "ci_workflows": 2,
+      "webhook_receivers": 0,
+      "container_configs": 0,
+      "iac_configs": 0,
+      "deploy_targets": 1,
+      "secret_management": "env vars"
+    }
+  },
+  "findings": [],
+  "supply_chain_summary": {
+    "direct_deps": 14,
+    "transitive_deps": 389,
+    "critical_cves": 0,
+    "high_cves": 0,
+    "install_scripts": 0,
+    "lockfile_present": true,
+    "lockfile_tracked": true,
+    "tools_skipped": []
+  },
+  "filter_stats": {
+    "candidates_scanned": 28,
+    "hard_exclusion_filtered": 14,
+    "confidence_gate_filtered": 12,
+    "verification_filtered": 2,
+    "reported": 0
+  },
+  "totals": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "tentative": 0
+  },
+  "trend": {
+    "prior_report_date": null,
+    "resolved": 0,
+    "persistent": 0,
+    "new": 0,
+    "direction": "first_run"
+  },
+  "hardening_notes": [
+    "Reusable workflows pin aaron-howard/ci-templates@v1.0.0 (tag, commit 06e78f9). Independent verifier scored 6/10: same-owner tag pin, not an unprivileged supply-chain path. SHA-pin if you want tag-move resistance.",
+    "GitHub ruleset MAIN Checks requires PRs and blocks force-push; it does not require CI status checks. Independent verifier scored 4/10: solo admin, auto-merge off, no unprivileged merge path.",
+    "No .gitleaks.toml or .secretlintrc in the repo.",
+    ".gstack/ is not in .gitignore; security reports should stay local."
+  ],
+  "verification": "independent sub-tasks scored CI tag-pin 6/10 and missing status checks 4/10; both discarded under daily 8/10 gate"
+}
