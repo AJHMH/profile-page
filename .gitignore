@@ -28,3 +28,8 @@ vite.config.ts.timestamp-*
 
 .vercel
 .env*.local
+
+# Local editor / agent config
+.claude/settings.json
+.cursor/mcp.json
+.cursor/settings.json
