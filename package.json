@@ -88,7 +88,7 @@
 		"@prisma/client": "^7.9.1",
 		"dotenv": "^17.4.2",
 		"pg": "^8.16.0",
-		"sanitize-html": "^2.17.5",
+		"sanitize-html": "^2.17.7",
 		"sveltekit-superforms": "^2.30.1",
 		"zod": "^4.3.6"
 	},
