@@ -1,0 +1,50 @@
+name: Factory Adoption
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      source_revision:
+        description: Exact certified consumer commit
+        required: true
+        type: string
+      producer_run_id:
+        description: Successful main push adoption run
+        required: true
+        type: string
+      pull_request_number:
+        description: Reviewed merged adoption PR
+        required: true
+        type: string
+      evidence_bundle:
+        description: Complete exact-revision evidence JSON
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  validation:
+    if: github.event_name != 'workflow_dispatch'
+    permissions:
+      contents: read
+      pull-requests: read
+      security-events: read
+    uses: AJHMH/software-factory/.github/workflows/factory-consumer-validation.yml@011e83014d666b782d9eee97c16c6bcf2cecc996
+    with:
+      source_revision: ${{ github.event.pull_request.head.sha || github.sha }}
+  certification:
+    if: github.event_name == 'workflow_dispatch'
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: read
+    uses: AJHMH/software-factory/.github/workflows/factory-consumer-certification.yml@011e83014d666b782d9eee97c16c6bcf2cecc996
+    with:
+      source_revision: ${{ inputs.source_revision }}
+      producer_run_id: ${{ inputs.producer_run_id }}
+      pull_request_number: ${{ inputs.pull_request_number }}
+      evidence_bundle: ${{ inputs.evidence_bundle }}
+    secrets:
+      FACTORY_GITHUB_TOKEN: ${{ secrets.FACTORY_CERTIFICATION_READ_TOKEN }}
