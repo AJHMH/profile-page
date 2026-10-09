@@ -6,9 +6,12 @@ The supported workload is an isolated Node 24 module. The SvelteKit application,
 its Node 22 runtime, application CI, database and deployments are outside this
 certificate's scope.
 
-The existing CI and native CodeQL default setup are preserved. Native default
-analysis is an allowed identity in the pinned Factory CodeQL profile and must
-include the added workload at the exact source SHA/ref. Factory validation
+The existing application CI is preserved. The proposed advanced CodeQL workflow
+analyzes the entire repository, including application and Factory workload, at
+the exact source SHA/ref. The pinned reusable producer requires its explicit
+`factory-codeql.yml:analyze` identity. An operator must authorize switching from
+native default setup to this advanced setup; do not disable scanning or merge
+without genuine exact-head analysis. Factory validation
 produces all baseline reports through immutable reusable workflows. Certification
 is a separate manual dispatch after a reviewed adoption PR and a successful main
 producer; it verifies the retained package without rebuilding.
