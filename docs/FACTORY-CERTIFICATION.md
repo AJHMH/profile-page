@@ -40,3 +40,17 @@ https://github.com/AJHMH/software-factory/blob/011e83014d666b782d9eee97c16c6bcf2
 
 No successful certification is claimed by this adoption proposal. A missing pin,
 credential, protection, approval, exact analysis or complete report fails closed.
+
+## Baseline and certification revision
+
+The initial workload landed in PR #107 at
+35c14a3742b1365584ee1f0c93210d469b7b9b0d. Initial adoption PR #106 landed as
+ed9ca8c87fc75a9f689bd98132abb2bd437885e2, but its original approved head did not
+contain the seed baseline. Main validation passed while review-head coverage
+correctly denied that incompatible history. It is not certified.
+
+Use this follow-up's independently approved exact head and subsequent merged
+main source for the successful producer and certification dispatch. Its reviewed
+head contains the real baseline. Do not retrofit evidence onto the initial
+adoption revision. The separate Factory ruleset has been provisioned and live
+inspection passes; this is configuration evidence, not a certificate.
