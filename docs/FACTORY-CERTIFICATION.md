@@ -40,3 +40,7 @@ https://github.com/AJHMH/software-factory/blob/011e83014d666b782d9eee97c16c6bcf2
 
 No successful certification is claimed by this adoption proposal. A missing pin,
 credential, protection, approval, exact analysis or complete report fails closed.
+
+The workload baseline was seeded by PR #107 at main commit
+35c14a3742b1365584ee1f0c93210d469b7b9b0d. Certification must use the reviewed
+follow-up adoption head and its actual merged source, not the seed revision.
