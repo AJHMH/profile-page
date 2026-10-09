@@ -1,20 +1,20 @@
-version: "1.0"
+version: '1.0'
 
 # A runnable reference workload, not a deployment or release authorization.
 contract:
-  workload_id: "profile-page-factory-test"
-  profile: "node-24"
-  working_directory: "factory-test-workload"
+  workload_id: 'profile-page-factory-test'
+  profile: 'node-24'
+  working_directory: 'factory-test-workload'
   commands:
     install:
-      run: "npm ci --ignore-scripts"
+      run: 'npm ci --ignore-scripts'
       timeout_seconds: 120
     validate:
-      run: "npm run lint && npm run typecheck"
+      run: 'npm run lint && npm run typecheck'
       timeout_seconds: 60
     test:
-      run: "npm test"
+      run: 'npm test'
       timeout_seconds: 60
     build:
-      run: "npm run build"
+      run: 'npm run build'
       timeout_seconds: 60
