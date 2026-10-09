@@ -1,0 +1,7 @@
+schema_version: 1
+factory:
+  repository: AJHMH/software-factory
+  revision: 011e83014d666b782d9eee97c16c6bcf2cecc996
+  version: 1.0.1
+  profile: node-24
+  policy_pack: baseline-1
