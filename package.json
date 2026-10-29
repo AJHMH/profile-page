@@ -59,7 +59,7 @@
 		"eslint-plugin-svelte": "^3.19.0",
 		"fallow": "^3.16.0",
 		"globals": "^17.7.0",
-		"happy-dom": "^20.10.6",
+		"happy-dom": "^21.0.4",
 		"husky": "^9.1.7",
 		"lint-staged": "^17.0.7",
 		"oxlint": "^1.79.0",
