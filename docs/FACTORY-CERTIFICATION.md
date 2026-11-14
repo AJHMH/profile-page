@@ -1,5 +1,9 @@
 # Factory consumer certification
 
+> Retired: the Factory Adoption workflow and its required checks were removed
+> so that this repository can host the Developer AIOS pilot. The record below is
+> kept for history.
+
 This repository adopts Factory distribution 1.0.1 at reviewed commit
 `011e83014d666b782d9eee97c16c6bcf2cecc996` for `factory-test-workload` only.
 The supported workload is an isolated Node 24 module. The SvelteKit application,

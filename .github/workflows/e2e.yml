@@ -3,10 +3,12 @@ name: E2E
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
-  group: e2e-${{ github.workflow }}-${{ github.ref }}
+  group: e2e-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -15,8 +17,23 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
+    # A disposable database per run: E2E never reaches real data.
+    services:
+      postgres:
+        image: postgres:17-alpine@sha256:d3244e8ce3f165ee3c93d9c4a4b1d0fe48b3a89e2287b717fdcbbde92d405065
+        env:
+          POSTGRES_USER: e2e
+          POSTGRES_PASSWORD: e2e
+          POSTGRES_DB: e2e
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U e2e -d e2e"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_URL: postgresql://e2e:e2e@localhost:5432/e2e?schema=public
       EMAIL_SERVICE: console
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -27,5 +44,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Create the schema in the disposable database
+        run: npx prisma db push
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
