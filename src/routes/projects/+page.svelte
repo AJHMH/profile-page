@@ -85,7 +85,7 @@
 
 	{#if filteredProjects.length === 0 && !data.dbError}
 		<div class="py-16 text-center">
-			<h3 class="mb-2 font-headline text-xl font-bold text-on-surface">No projects found</h3>
+			<h2 class="mb-2 font-headline text-xl font-bold text-on-surface">No projects found</h2>
 			<p class="text-secondary">Try selecting a different category to see more projects.</p>
 		</div>
 	{/if}
