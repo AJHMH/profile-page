@@ -41,7 +41,7 @@
 		"@fontsource/manrope": "^5.2.5",
 		"@oxlint/plugins": "^1.79.0",
 		"@playwright/test": "^1.61.0",
-		"@sveltejs/adapter-vercel": "^6.3.4",
+		"@sveltejs/adapter-vercel": "^6.3.5",
 		"@sveltejs/kit": "^2.70.3",
 		"@sveltejs/vite-plugin-svelte": "^7.1.2",
 		"@tailwindcss/forms": "^0.5.9",
