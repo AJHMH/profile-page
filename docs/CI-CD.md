@@ -14,6 +14,12 @@ validation and security scans without depending on that repository.
 | E2E     | Pull request, push to `main`, manual | Playwright Chromium smoke, accessibility and honeypot tests, against a disposable PostgreSQL                |
 | Deploy  | Push to `main`                       | Existing Vercel Git integration                                                                             |
 
+Pull requests report the job names the `main` ruleset requires:
+`Lint, Type Check, Test, Build`, `Semgrep Security Scan` and `e2e`. Pushes to
+`main` report the same jobs as `main: Lint, Type Check, Test, Build`,
+`main: Semgrep Security Scan` and `main: e2e`, so AIOS can tell its main
+checks from its PR checks; it matches checks by job name.
+
 CI and E2E use Node 22 to match the application runtime. Semgrep fails on
 findings; dependency audit fails at moderate severity or higher. Coverage
 thresholds are defined in `vitest.config.ts`.

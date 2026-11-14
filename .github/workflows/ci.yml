@@ -13,7 +13,9 @@ concurrency:
 
 jobs:
   semgrep:
-    name: Semgrep Security Scan
+    # Pushes to main report under their own name, so AIOS can tell its main
+    # checks from the PR checks the ruleset requires.
+    name: "${{ github.event_name == 'push' && 'main: Semgrep Security Scan' || 'Semgrep Security Scan' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -39,7 +41,7 @@ jobs:
           category: semgrep
 
   ci:
-    name: Lint, Type Check, Test, Build
+    name: "${{ github.event_name == 'push' && 'main: Lint, Type Check, Test, Build' || 'Lint, Type Check, Test, Build' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
