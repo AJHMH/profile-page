@@ -13,6 +13,8 @@ concurrency:
 
 jobs:
   e2e:
+    # Pushes to main report as `main: e2e`; PRs keep the required `e2e`.
+    name: "${{ github.event_name == 'push' && 'main: e2e' || 'e2e' }}"
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
