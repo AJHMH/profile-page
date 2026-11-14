@@ -11,7 +11,7 @@ validation and security scans without depending on that repository.
 | ------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
 | CI      | Pull request, push to `main`, manual | Clean install, dependency audit, formatting/ESLint, Svelte type checks, coverage tests, production build    |
 | Semgrep | Pull request, push to `main`, manual | Registry packs `p/ci`, `p/typescript`, `p/nodejs` and `config/semgrep/rules`; SARIF upload to code scanning |
-| E2E     | Push to `main`, manual               | Playwright Chromium smoke, accessibility and honeypot tests                                                 |
+| E2E     | Pull request, push to `main`, manual | Playwright Chromium smoke, accessibility and honeypot tests, against a disposable PostgreSQL                |
 | Deploy  | Push to `main`                       | Existing Vercel Git integration                                                                             |
 
 CI and E2E use Node 22 to match the application runtime. Semgrep fails on
@@ -31,8 +31,10 @@ npm run semgrep:scan
 npm run test:e2e
 ```
 
-E2E uses the existing `DATABASE_URL` repository secret when configured. Export
-the database environment for local E2E runs as described in `AGENTS.md`.
+In CI, E2E runs against a disposable PostgreSQL service container, with the
+schema created by `prisma db push`; it never uses the `DATABASE_URL` repository
+secret. Export the database environment for local E2E runs as described in
+`AGENTS.md`.
 The honeypot test rejects the submission before email delivery; CI uses the
 console email provider.
 
