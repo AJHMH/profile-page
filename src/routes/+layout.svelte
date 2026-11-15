@@ -10,6 +10,7 @@
 	let mobileMenuOpen = $state(false);
 	let mobileMenuButtonEl = $state<HTMLButtonElement | undefined>(undefined);
 	let mobileMenuPanelEl = $state<HTMLDivElement | undefined>(undefined);
+	let mainEl = $state<HTMLElement | undefined>(undefined);
 
 	const nav = [
 		{ href: '/', label: 'Home' },
@@ -26,6 +27,11 @@
 		return active
 			? 'font-headline font-bold tracking-tight text-on-surface border-b-2 border-primary pb-0.5'
 			: 'font-headline font-bold tracking-tight text-secondary transition-colors duration-300 hover:text-on-surface';
+	}
+
+	// SvelteKit may handle same-page hash links without moving focus, so do it explicitly.
+	function focusMainContent() {
+		mainEl?.focus();
 	}
 
 	function closeMobileMenu() {
@@ -62,6 +68,13 @@
 </script>
 
 <div class="min-h-screen bg-background font-body text-on-surface antialiased">
+	<a
+		href="#main-content"
+		class="skip-link rounded-md bg-primary px-4 py-2 font-headline font-bold text-on-primary"
+		onclick={focusMainContent}
+	>
+		Skip to content
+	</a>
 	<nav
 		class="fixed top-0 z-50 w-full bg-surface/80 backdrop-blur-xl backdrop-saturate-150"
 		aria-label="Primary"
@@ -141,7 +154,12 @@
 		{/if}
 	</nav>
 
-	<main class="w-full px-6 pb-16 pt-24 md:px-8 md:pt-28">
+	<main
+		id="main-content"
+		bind:this={mainEl}
+		tabindex="-1"
+		class="w-full px-6 pb-16 pt-24 outline-none md:px-8 md:pt-28"
+	>
 		{@render children()}
 	</main>
 
@@ -167,3 +185,25 @@
 		</div>
 	</footer>
 </div>
+
+<style>
+	/* Visually hidden until focused; then pinned above the fixed nav (z-50). */
+	.skip-link:not(:focus) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	.skip-link:focus {
+		position: fixed;
+		top: 1rem;
+		left: 1rem;
+		z-index: 60;
+	}
+</style>
