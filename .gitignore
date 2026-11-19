@@ -34,6 +34,5 @@ vite.config.ts.timestamp-*
 .cursor/mcp.json
 .cursor/settings.json
 
-# Isolated Factory evidence and build output
+# Temporary files
 /tmp/
-/factory-test-workload/dist/
