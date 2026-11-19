@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { dev } from '$app/environment';
+	import { dev } from '$app/env';
 	import type { PageData } from './$types';
 	import SeoHead from '$lib/components/SeoHead.svelte';
 	import ProjectPicture from '$lib/components/ProjectPicture.svelte';

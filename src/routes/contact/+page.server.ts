@@ -1,5 +1,5 @@
 import type { Actions, PageServerLoad } from './$types';
-import { superValidate } from 'sveltekit-superforms/server';
+import { superValidate } from 'sveltekit-superforms';
 import { zod4 } from '$lib/server/superforms-zod4';
 import { contactFormSchema } from '$lib/schemas';
 import { submitContact } from '$lib/server/contact';

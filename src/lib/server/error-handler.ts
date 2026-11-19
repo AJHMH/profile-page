@@ -3,7 +3,7 @@
  * Provides consistent error logging and user-friendly error messages
  */
 
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 
 export interface AppErrorDetails {
 	readonly [key: string]: string | number | boolean | null;

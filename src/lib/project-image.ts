@@ -1,5 +1,3 @@
-import { base } from '$app/paths';
-
 /**
  * Normalize project image paths for `<img src>`.
  * Files in `static/projects/` are served at `/projects/...`, not `/static/projects/...`.
@@ -26,7 +24,7 @@ export function projectImageSrc(path: string | null | undefined): string | null 
 		.map((seg) => encodeURIComponent(seg));
 	const encoded = `/${segments.join('/')}`;
 
-	return `${base}${encoded}`;
+	return encoded;
 }
 
 /** WebP twin path for local `/projects/*.jpg` assets (after `npm run assets:project-images`). */

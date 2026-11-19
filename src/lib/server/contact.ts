@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit';
-import { superValidate, message } from 'sveltekit-superforms/server';
+import { superValidate, message } from 'sveltekit-superforms';
 import { zod4 } from '$lib/server/superforms-zod4';
-import { env } from '$env/dynamic/private';
+import { CONTACT_EMAIL, EMAIL_TO } from '$app/env/private';
 import { sendEmail, formatContactEmail } from '$lib/server/email';
 import { contactFormSchema } from '$lib/schemas';
 import { handleFormError, toError } from '$lib/server/error-handler';
@@ -34,7 +34,7 @@ export async function submitContact(request: Request, mailer: ContactMailer = de
 		const subject = normalizeTextInput(submitted.subject);
 		const messageText = normalizeTextInput(submitted.message);
 
-		const recipientEmail = env.CONTACT_EMAIL || env.EMAIL_TO || 'admin@example.com';
+		const recipientEmail = CONTACT_EMAIL || EMAIL_TO || 'admin@example.com';
 		const emailContent = mailer.formatContactEmail({
 			name,
 			email,
