@@ -1,9 +1,7 @@
-export const env = {
-	DATABASE_URL: 'postgresql://test:test@localhost:5432/test',
-	EMAIL_SERVICE: 'console',
-	CONTACT_EMAIL: 'test@example.com',
-	EMAIL_TO: undefined,
-	EMAIL_FROM: undefined,
-	RESEND_API_KEY: undefined,
-	SENDGRID_API_KEY: undefined
-};
+export const DATABASE_URL = 'postgresql://test:test@localhost:5432/test';
+export const EMAIL_SERVICE = 'console';
+export const CONTACT_EMAIL = 'test@example.com';
+export const EMAIL_TO = undefined;
+export const EMAIL_FROM = undefined;
+export const RESEND_API_KEY = undefined;
+export const SENDGRID_API_KEY = undefined;

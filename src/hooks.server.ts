@@ -1,4 +1,4 @@
-import type { Handle, HandleServerError } from '@sveltejs/kit';
+import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
 import { SpanStatusCode, trace } from '@opentelemetry/api';
 import {
 	recordHttpRequest,

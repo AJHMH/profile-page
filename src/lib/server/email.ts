@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { EMAIL_FROM, EMAIL_SERVICE, RESEND_API_KEY, SENDGRID_API_KEY } from '$app/env/private';
 import { tracer } from '$lib/observability/tracer';
 import { escapeHtml } from './sanitize-utils';
 
@@ -28,7 +28,7 @@ export async function sendEmail(data: EmailData): Promise<{ success: boolean; er
 }
 
 async function actualSendEmail(data: EmailData): Promise<{ success: boolean; error?: string }> {
-	const emailService = env.EMAIL_SERVICE || 'console'; // console, smtp, resend, sendgrid
+	const emailService = EMAIL_SERVICE || 'console'; // console, smtp, resend, sendgrid
 
 	if (process.env.NODE_ENV === 'production' && emailService === 'console') {
 		console.error('EMAIL_SERVICE=console is not allowed in production');
@@ -82,7 +82,7 @@ async function sendViaSMTP(_data: EmailData): Promise<{ success: boolean; error?
 }
 
 async function sendViaResend(data: EmailData): Promise<{ success: boolean; error?: string }> {
-	const apiKey = env.RESEND_API_KEY;
+	const apiKey = RESEND_API_KEY;
 	if (!apiKey) {
 		throw new Error('RESEND_API_KEY environment variable is not set');
 	}
@@ -94,7 +94,7 @@ async function sendViaResend(data: EmailData): Promise<{ success: boolean; error
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify({
-			from: env.EMAIL_FROM || 'onboarding@resend.dev',
+			from: EMAIL_FROM || 'onboarding@resend.dev',
 			to: data.to,
 			subject: data.subject,
 			html: data.html,
@@ -112,7 +112,7 @@ async function sendViaResend(data: EmailData): Promise<{ success: boolean; error
 }
 
 async function sendViaSendGrid(data: EmailData): Promise<{ success: boolean; error?: string }> {
-	const apiKey = env.SENDGRID_API_KEY;
+	const apiKey = SENDGRID_API_KEY;
 	if (!apiKey) {
 		throw new Error('SENDGRID_API_KEY environment variable is not set');
 	}
@@ -129,7 +129,7 @@ async function sendViaSendGrid(data: EmailData): Promise<{ success: boolean; err
 					to: [{ email: data.to }]
 				}
 			],
-			from: { email: env.EMAIL_FROM || 'noreply@example.com' },
+			from: { email: EMAIL_FROM || 'noreply@example.com' },
 			subject: data.subject,
 			content: [
 				{ type: 'text/html', value: data.html },

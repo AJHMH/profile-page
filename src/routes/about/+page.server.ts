@@ -1,4 +1,4 @@
-import { dev } from '$app/environment';
+import { dev } from '$app/env';
 import type { PageServerLoad } from './$types';
 import { toBioProfile } from '$lib/bio-profile';
 import { devFallbackBio } from '$lib/dev-fallback-bio';
